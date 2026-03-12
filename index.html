@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Embakasi escorts and extra </title>
+<title>Embakasi Providers Directory</title>
 
 <style>
 
@@ -26,51 +26,52 @@ align-items:center;
 }
 
 header h1{
-margin:0;
 color:#ff2e63;
+margin:0;
 }
 
-.register{
-background:#ff2e63;
-padding:10px 20px;
+nav a{
 color:white;
+margin-left:20px;
 text-decoration:none;
-border-radius:6px;
+font-weight:bold;
 }
 
 .banner{
 background:#ff2e63;
-padding:20px;
 text-align:center;
-font-size:18px;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:30px;
+padding:20px;
 }
 
 .search{
-margin-bottom:30px;
 text-align:center;
+margin:20px;
 }
 
 .search input{
-padding:12px;
-width:300px;
-border-radius:6px;
+padding:10px;
+width:250px;
+border-radius:5px;
 border:none;
 }
 
-.providers{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+.search select{
+padding:10px;
+border-radius:5px;
+border:none;
+}
+
+.directory{
+display:flex;
+flex-wrap:wrap;
 gap:20px;
+justify-content:center;
+padding:20px;
 }
 
 .card{
 background:#222;
+width:260px;
 border-radius:10px;
 overflow:hidden;
 }
@@ -85,25 +86,17 @@ object-fit:cover;
 padding:15px;
 }
 
-.card h3{
-margin:0;
+.card-content h3{
 color:#ff2e63;
-}
-
-.vip{
-background:gold;
-color:black;
-padding:3px 8px;
-font-size:12px;
-border-radius:4px;
-margin-left:6px;
+margin:5px 0;
 }
 
 .whatsapp{
-display:inline-block;
-margin-top:10px;
-padding:10px 15px;
+display:block;
 background:#25D366;
+padding:10px;
+text-align:center;
+margin-top:10px;
 color:white;
 text-decoration:none;
 border-radius:5px;
@@ -116,6 +109,17 @@ padding:20px;
 margin-top:40px;
 }
 
+.contact{
+padding:40px;
+text-align:center;
+}
+
+.contact a{
+color:#25D366;
+font-size:18px;
+text-decoration:none;
+}
+
 </style>
 
 </head>
@@ -124,36 +128,64 @@ margin-top:40px;
 
 <header>
 
-<h1>Embakasi Directory</h1>
+<h1>Embakasi escorts and extras</h1>
 
-<a class="register"
-href="https://docs.google.com/forms/d/e/1FAIpQLScT-eJVOlztP5TN2sx5rhgnHUwkpx1ZnwUqZ5_fFXSYWYmHTw/viewform"
-target="_blank">
-Register
-</a>
+<nav>
+
+<a href="index.html">Home</a>
+<a href="register.html">Register</a>
+<a href="#contact">Contact</a>
+
+</nav>
 
 </header>
 
 <div class="banner">
-Independent Providers — Register to get listed
-</div>
 
-<div class="container">
+Independent Service Providers  
+Register to appear in the directory
+
+</div>
 
 <div class="search">
-<input type="text" id="searchInput" placeholder="Search location...">
+
+<input type="text" id="searchInput" placeholder="Search by name">
+
+<select id="locationFilter">
+
+<option value="">All Locations</option>
+<option>Embakasi</option>
+<option>Utawala</option>
+<option>Tassia</option>
+<option>Pipeline</option>
+<option>Fedha</option>
+
+</select>
+
 </div>
 
-<div id="providersList" class="providers">
-Loading providers...
-</div>
+<div id="directory" class="directory"></div>
+
+<div id="contact" class="contact">
+
+<h2>Contact Us</h2>
+
+<p>For listings or support contact us:</p>
+
+<p>
+<a href="https://wa.me/254705283274">WhatsApp 0705283274</a>
+</p>
+
+<p>Email: wanyonyibyram95@gmail.com</p>
 
 </div>
 
 <footer>
 
-Disclaimer: This platform only lists independent providers.  
-All providers are responsible for their own services.
+<p>
+Disclaimer: This website only lists independent providers.
+Users must be 18+.
+</p>
 
 </footer>
 
@@ -178,8 +210,7 @@ name:cols[1],
 age:cols[2],
 location:cols[3],
 phone:cols[4],
-photo:cols[7],
-description:cols[8]
+photo:cols[7]
 };
 
 if(provider.name){
@@ -202,7 +233,7 @@ html+=`
 
 <div class="card">
 
-<img src="${p.photo}" alt="${p.name}">
+<img src="${p.photo}" onerror="this.src='https://via.placeholder.com/260x260'">
 
 <div class="card-content">
 
@@ -212,10 +243,8 @@ html+=`
 
 <p>Location: ${p.location}</p>
 
-<p>${p.description}</p>
-
 <a class="whatsapp" href="https://wa.me/${p.phone}" target="_blank">
-Chat on WhatsApp
+WhatsApp
 </a>
 
 </div>
@@ -226,7 +255,7 @@ Chat on WhatsApp
 
 });
 
-document.getElementById("providersList").innerHTML=html;
+document.getElementById("directory").innerHTML=html;
 
 }
 
@@ -234,7 +263,17 @@ document.getElementById("searchInput").addEventListener("keyup",function(){
 
 let keyword=this.value.toLowerCase();
 
-let filtered=providers.filter(p=>p.location.toLowerCase().includes(keyword));
+let filtered=providers.filter(p=>p.name.toLowerCase().includes(keyword));
+
+displayProviders(filtered);
+
+});
+
+document.getElementById("locationFilter").addEventListener("change",function(){
+
+let loc=this.value.toLowerCase();
+
+let filtered=providers.filter(p=>p.location.toLowerCase().includes(loc));
 
 displayProviders(filtered);
 
@@ -243,5 +282,4 @@ displayProviders(filtered);
 </script>
 
 </body>
-
 </html>
