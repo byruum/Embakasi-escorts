@@ -1,263 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Embakasi Providers Directory</title>
+<title>Embakasi Providers | webtool.co.ke</title>
 
 <style>
 
 body{
-font-family:Arial;
+font-family: Arial, sans-serif;
+background:#f5f5f5;
 margin:0;
-background:#111;
-color:white;
+padding:0;
 }
 
 header{
-background:black;
+background:#000;
+color:#fff;
 padding:20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
+text-align:center;
 }
 
-header h1{
-color:#ff2e63;
-margin:0;
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
 }
 
-nav a{
+.register-box{
+background:#fff;
+padding:20px;
+border-radius:10px;
+margin-bottom:30px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+text-align:center;
+}
+
+.register-btn{
+background:#e91e63;
 color:white;
-margin-left:15px;
-text-decoration:none;
-font-weight:bold;
-}
-
-.banner{
-background:#ff2e63;
-text-align:center;
-padding:25px;
-}
-
-.banner p{
-margin:5px 0;
-font-size:16px;
-}
-
-.banner a{
-background:white;
-color:black;
-padding:12px 20px;
-border-radius:6px;
-text-decoration:none;
-font-weight:bold;
-display:inline-block;
-margin-top:10px;
-}
-
-.search{
-padding:30px;
-text-align:center;
-}
-
-.search input{
-width:60%;
-padding:12px;
-border-radius:5px;
+padding:12px 25px;
 border:none;
+border-radius:6px;
 font-size:16px;
+cursor:pointer;
 }
 
-.directory{
-display:flex;
-flex-wrap:wrap;
+.providers{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
-justify-content:center;
-padding:20px;
 }
 
 .card{
-background:#222;
-width:250px;
+background:#fff;
+padding:20px;
 border-radius:10px;
-overflow:hidden;
-box-shadow:0 0 10px rgba(0,0,0,0.5);
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
-.card img{
-width:100%;
-height:260px;
-object-fit:cover;
+.card h3{
+margin:0;
+color:#e91e63;
 }
 
-.card-content{
-padding:15px;
-}
-
-.card-content h3{
-margin:5px 0;
-color:#ff2e63;
-}
-
-.card-content p{
+.card p{
 margin:5px 0;
 }
 
-.contact-btn{
-display:block;
-background:#25D366;
-text-align:center;
-padding:10px;
-margin-top:10px;
-color:white;
-text-decoration:none;
-border-radius:5px;
-font-weight:bold;
+.disclaimer{
+font-size:13px;
+color:#777;
+margin-top:15px;
 }
 
 footer{
-background:black;
+background:#000;
+color:#fff;
 text-align:center;
-padding:20px;
+padding:15px;
 margin-top:40px;
-font-size:14px;
 }
 
 </style>
-
-<script>
-
-function searchProfiles() {
-
-let input=document.getElementById("searchInput").value.toLowerCase();
-let cards=document.getElementsByClassName("card");
-
-for(let i=0;i<cards.length;i++){
-
-let text=cards[i].innerText.toLowerCase();
-
-if(text.includes(input)){
-cards[i].style.display="block";
-}else{
-cards[i].style.display="none";
-}
-
-}
-
-}
-
-</script>
-
 </head>
 
 <body>
 
 <header>
-
-<h1>Embakasi Directory</h1>
-
-<nav>
-
-<a href="index.html">Home</a>
-<a href="register.html">Register</a>
-
-</nav>
-
+<h1>Embakasi Providers</h1>
+<p>webtool.co.ke directory</p>
 </header>
 
-<div class="banner">
+<div class="container">
 
-<p>⚠️ Independent Service Providers</p>
+<div class="register-box">
 
-<p>Do you want to offer services and appear in the Embakasi Directory?</p>
+<h2>Want to Offer Services?</h2>
 
-<p><b>Registration Fee: KSh 300</b></p>
+<p>Register now and be listed on our platform.</p>
 
-<p>New providers receive a <b>48 hour FREE listing trial</b></p>
+<p><b>Registration Fee: KES 300</b></p>
+<p>First <b>48 hours FREE listing</b></p>
 
-<a href="register.html">Register Now</a>
+<button class="register-btn"
+onclick="window.location.href='https://docs.google.com/forms/d/e/1FAIpQLScT-eJVOlztP5TN2sx5rhgnHUwkpx1ZnwUqZ5_fFXSYWYmHTw/viewform'">
+Register Now
+</button>
 
-</div>
-
-<div class="search">
-
-<input type="text" id="searchInput" onkeyup="searchProfiles()" placeholder="Search by age or location">
-
-</div>
-
-<div class="directory">
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330">
-
-<div class="card-content">
-
-<h3>Amanda</h3>
-
-<p>Age: 24</p>
-
-<p>Location: Embakasi</p>
-
-<a class="contact-btn" href="https://wa.me/254705283274">WhatsApp</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df">
-
-<div class="card-content">
-
-<h3>Sasha</h3>
-
-<p>Age: 22</p>
-
-<p>Location: Nairobi</p>
-
-<a class="contact-btn" href="https://wa.me/254705283274">WhatsApp</a>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<img src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe">
-
-<div class="card-content">
-
-<h3>Nina</h3>
-
-<p>Age: 25</p>
-
-<p>Location: Embakasi</p>
-
-<a class="contact-btn" href="https://wa.me/254705283274">WhatsApp</a>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-<p>
-Disclaimer: This website only lists independent service providers.
-The platform does not directly offer or manage services.
-Users must be 18+ to access this directory.
+<p class="disclaimer">
+All providers must submit valid ID for verification to prevent fraud or duplicate listings.
 </p>
 
-<p>© Embakasi Directory</p>
+</div>
 
+
+<h2>Available Providers</h2>
+
+<div id="providers" class="providers"></div>
+
+</div>
+
+
+<footer>
+Powered by webtool.co.ke
 </footer>
+
+
+<script>
+
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR0H7vZaxYZCGNOzbekdzsMJbRwehJ4JK8aCTeGdD8IyaKA1uSz1cMhi8La9OhIon2ZWFFfQN8UzeNe/pub?gid=1626780563&single=true&output=csv";
+
+fetch(sheetURL)
+.then(response => response.text())
+.then(data => {
+
+let rows = data.split("\n").slice(1);
+
+let container = document.getElementById("providers");
+
+rows.forEach(row => {
+
+let cols = row.split(",");
+
+if(cols.length > 3){
+
+let name = cols[1];
+let age = cols[2];
+let location = cols[3];
+let whatsapp = cols[4];
+
+let card = document.createElement("div");
+
+card.className="card";
+
+card.innerHTML=`
+
+<h3>${name}</h3>
+
+<p><b>Age:</b> ${age}</p>
+
+<p><b>Location:</b> ${location}</p>
+
+<p>
+<a href="https://wa.me/${whatsapp}" target="_blank">
+Chat on WhatsApp
+</a>
+</p>
+
+`;
+
+container.appendChild(card);
+
+}
+
+});
+
+});
+
+</script>
 
 </body>
 </html>
