@@ -17,16 +17,25 @@ color:white;
 
 header{
 background:black;
-padding:20px;
-text-align:center;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 }
 
 header h1{
 color:#ff2e63;
+margin:0;
+}
+
+nav a{
+color:white;
+margin:0 10px;
+text-decoration:none;
 }
 
 .hero{
-height:90vh;
+height:85vh;
 background:url('https://images.unsplash.com/photo-1520975922327-9c28cdd6d1a9') center/cover;
 display:flex;
 align-items:center;
@@ -41,7 +50,7 @@ font-size:40px;
 }
 
 .section{
-padding:40px;
+padding:50px 20px;
 text-align:center;
 }
 
@@ -61,10 +70,26 @@ overflow:hidden;
 
 .card img{
 width:100%;
+height:300px;
+object-fit:cover;
 }
 
 .card h3{
 color:#ff2e63;
+}
+
+.services{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:30px;
+}
+
+.service{
+background:#222;
+padding:20px;
+width:220px;
+border-radius:10px;
 }
 
 .whatsapp{
@@ -76,6 +101,7 @@ color:white;
 padding:15px 20px;
 border-radius:30px;
 text-decoration:none;
+font-weight:bold;
 }
 
 footer{
@@ -91,15 +117,21 @@ text-align:center;
 <body>
 
 <header>
-<h1>Embakasi Elite Companions</h1>
-<p>Luxury Private Companionship</p>
+<h1>Embakasi Escorts</h1>
+
+<nav>
+<a href="#">Home</a>
+<a href="#companions">Companions</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</nav>
 </header>
 
 <div class="hero">
-<h2>Premium Companions in Nairobi</h2>
+<h2>Premium Companionship in Nairobi</h2>
 </div>
 
-<section class="section">
+<section class="section" id="companions">
 
 <h2>Our Companions</h2>
 
@@ -127,10 +159,42 @@ text-align:center;
 
 </section>
 
+<section class="section" id="services">
+
+<h2>Our Services</h2>
+
+<div class="services">
+
+<div class="service">
+<h3>Dinner Dates</h3>
+<p>Elegant companionship for dinner or events.</p>
+</div>
+
+<div class="service">
+<h3>Private Meetings</h3>
+<p>Discreet private companionship.</p>
+</div>
+
+<div class="service">
+<h3>Travel Companion</h3>
+<p>Luxury travel companionship.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="section" id="contact">
+
+<h2>Book Now</h2>
+<p>Contact us privately via WhatsApp</p>
+
+</section>
+
 <a class="whatsapp" href="https://wa.me/254705283274">WhatsApp</a>
 
 <footer>
-<p>Embakasi Elite Companions | Nairobi</p>
+<p>Embakasi Escorts | Nairobi</p>
 </footer>
 
 </body>
