@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Embakasi Escorts Directory</title>
+<title>Embakasi Providers Directory</title>
 
 <style>
 
@@ -29,13 +30,6 @@ margin:0;
 color:#ff2e63;
 }
 
-nav a{
-color:white;
-margin-left:15px;
-text-decoration:none;
-font-weight:bold;
-}
-
 .banner{
 background:#ff2e63;
 padding:20px;
@@ -44,26 +38,35 @@ font-size:18px;
 }
 
 .container{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
 padding:30px;
 }
 
 .providers{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:20px;
-margin-top:30px;
 }
 
 .card{
 background:#222;
-padding:20px;
 border-radius:10px;
+overflow:hidden;
+}
+
+.card img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.card-content{
+padding:15px;
 }
 
 .card h3{
-margin-top:0;
+margin:0;
 color:#ff2e63;
 }
 
@@ -78,21 +81,18 @@ border-radius:5px;
 }
 
 .register{
-display:inline-block;
 background:#ff2e63;
+padding:10px 20px;
 color:white;
-padding:12px 20px;
 text-decoration:none;
-border-radius:5px;
-margin-top:10px;
+border-radius:6px;
 }
 
 footer{
 background:black;
-padding:15px;
 text-align:center;
+padding:15px;
 margin-top:40px;
-font-size:14px;
 }
 
 </style>
@@ -105,23 +105,23 @@ font-size:14px;
 
 <h1>Embakasi Directory</h1>
 
-<nav>
-<a href="#providers">Providers</a>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLScT-eJVOlztP5TN2sx5rhgnHUwkpx1ZnwUqZ5_fFXSYWYmHTw/viewform" target="_blank">Register</a>
-</nav>
+<a class="register"
+href="https://docs.google.com/forms/d/e/1FAIpQLScT-eJVOlztP5TN2sx5rhgnHUwkpx1ZnwUqZ5_fFXSYWYmHTw/viewform"
+target="_blank">
+Register
+</a>
 
 </header>
 
 <div class="banner">
-Independent Providers Directory <br>
-<a class="register" href="https://docs.google.com/forms/d/e/1FAIpQLScT-eJVOlztP5TN2sx5rhgnHUwkpx1ZnwUqZ5_fFXSYWYmHTw/viewform" target="_blank">Register Now</a>
+Independent Providers — Register to get listed
 </div>
 
 <div class="container">
 
-<h2 id="providers">Available Providers</h2>
+<h2>Available Providers</h2>
 
-<div class="providers" id="providersList">
+<div id="providersList" class="providers">
 Loading providers...
 </div>
 
@@ -129,57 +129,66 @@ Loading providers...
 
 <footer>
 
-<p>
-Disclaimer: This website only lists independent providers.  
+Disclaimer: This platform only lists independent providers.  
 All providers are responsible for their own services.
-</p>
 
 </footer>
 
 <script>
 
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vR0H7vZaxYZCGNOzbekdzsMJbRwehJ4JK8aCTeGdD8IyaKA1uSz1cMhi8La9OhIon2ZWFFfQN8UzeNe/pub?gid=1626780563&single=true&output=csv";
+const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR0H7vZaxYZCGNOzbekdzsMJbRwehJ4JK8aCTeGdD8IyaKA1uSz1cMhi8La9OhIon2ZWFFfQN8UzeNe/pub?gid=1626780563&single=true&output=csv";
 
 fetch(sheetURL)
-.then(response => response.text())
-.then(data => {
+.then(res=>res.text())
+.then(data=>{
 
-let rows = data.split("\n").slice(1);
+let rows=data.split("\n").slice(1);
+let html="";
 
-let html = "";
+rows.forEach(row=>{
 
-rows.forEach(row => {
+let cols=row.split(",");
 
-let cols = row.split(",");
-
-let name = cols[1];
-let age = cols[2];
-let location = cols[3];
-let phone = cols[4];
+let name=cols[1];
+let age=cols[2];
+let location=cols[3];
+let phone=cols[4];
+let photo=cols[7]; // Upload Profile Photo column
+let description=cols[8];
 
 if(name){
 
-html += `
+html+=`
+
 <div class="card">
+
+<img src="${photo}" alt="${name}">
+
+<div class="card-content">
 
 <h3>${name}</h3>
 
-<p><b>Age:</b> ${age}</p>
+<p>Age: ${age}</p>
 
-<p><b>Location:</b> ${location}</p>
+<p>Location: ${location}</p>
+
+<p>${description}</p>
 
 <a class="whatsapp" href="https://wa.me/${phone}" target="_blank">
 WhatsApp
 </a>
 
 </div>
+
+</div>
+
 `;
 
 }
 
 });
 
-document.getElementById("providersList").innerHTML = html;
+document.getElementById("providersList").innerHTML=html;
 
 });
 
