@@ -30,6 +30,14 @@ margin:0;
 color:#ff2e63;
 }
 
+.register{
+background:#ff2e63;
+padding:10px 20px;
+color:white;
+text-decoration:none;
+border-radius:6px;
+}
+
 .banner{
 background:#ff2e63;
 padding:20px;
@@ -38,9 +46,21 @@ font-size:18px;
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:auto;
 padding:30px;
+}
+
+.search{
+margin-bottom:30px;
+text-align:center;
+}
+
+.search input{
+padding:12px;
+width:300px;
+border-radius:6px;
+border:none;
 }
 
 .providers{
@@ -57,7 +77,7 @@ overflow:hidden;
 
 .card img{
 width:100%;
-height:250px;
+height:260px;
 object-fit:cover;
 }
 
@@ -70,6 +90,15 @@ margin:0;
 color:#ff2e63;
 }
 
+.vip{
+background:gold;
+color:black;
+padding:3px 8px;
+font-size:12px;
+border-radius:4px;
+margin-left:6px;
+}
+
 .whatsapp{
 display:inline-block;
 margin-top:10px;
@@ -80,18 +109,10 @@ text-decoration:none;
 border-radius:5px;
 }
 
-.register{
-background:#ff2e63;
-padding:10px 20px;
-color:white;
-text-decoration:none;
-border-radius:6px;
-}
-
 footer{
 background:black;
 text-align:center;
-padding:15px;
+padding:20px;
 margin-top:40px;
 }
 
@@ -119,7 +140,9 @@ Independent Providers — Register to get listed
 
 <div class="container">
 
-<h2>Available Providers</h2>
+<div class="search">
+<input type="text" id="searchInput" placeholder="Search location...">
+</div>
 
 <div id="providersList" class="providers">
 Loading providers...
@@ -138,44 +161,61 @@ All providers are responsible for their own services.
 
 const sheetURL="https://docs.google.com/spreadsheets/d/e/2PACX-1vR0H7vZaxYZCGNOzbekdzsMJbRwehJ4JK8aCTeGdD8IyaKA1uSz1cMhi8La9OhIon2ZWFFfQN8UzeNe/pub?gid=1626780563&single=true&output=csv";
 
+let providers=[];
+
 fetch(sheetURL)
 .then(res=>res.text())
 .then(data=>{
 
 let rows=data.split("\n").slice(1);
-let html="";
 
 rows.forEach(row=>{
 
 let cols=row.split(",");
 
-let name=cols[1];
-let age=cols[2];
-let location=cols[3];
-let phone=cols[4];
-let photo=cols[7]; // Upload Profile Photo column
-let description=cols[8];
+let provider={
+name:cols[1],
+age:cols[2],
+location:cols[3],
+phone:cols[4],
+photo:cols[7],
+description:cols[8]
+};
 
-if(name){
+if(provider.name){
+providers.push(provider);
+}
+
+});
+
+displayProviders(providers);
+
+});
+
+function displayProviders(list){
+
+let html="";
+
+list.forEach(p=>{
 
 html+=`
 
 <div class="card">
 
-<img src="${photo}" alt="${name}">
+<img src="${p.photo}" alt="${p.name}">
 
 <div class="card-content">
 
-<h3>${name}</h3>
+<h3>${p.name}</h3>
 
-<p>Age: ${age}</p>
+<p>Age: ${p.age}</p>
 
-<p>Location: ${location}</p>
+<p>Location: ${p.location}</p>
 
-<p>${description}</p>
+<p>${p.description}</p>
 
-<a class="whatsapp" href="https://wa.me/${phone}" target="_blank">
-WhatsApp
+<a class="whatsapp" href="https://wa.me/${p.phone}" target="_blank">
+Chat on WhatsApp
 </a>
 
 </div>
@@ -184,15 +224,24 @@ WhatsApp
 
 `;
 
-}
-
 });
 
 document.getElementById("providersList").innerHTML=html;
+
+}
+
+document.getElementById("searchInput").addEventListener("keyup",function(){
+
+let keyword=this.value.toLowerCase();
+
+let filtered=providers.filter(p=>p.location.toLowerCase().includes(keyword));
+
+displayProviders(filtered);
 
 });
 
 </script>
 
 </body>
+
 </html>
