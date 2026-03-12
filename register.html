@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Provider Registration | Escorts Directory</title>
+<title>Provider Registration | Embakasi Directory</title>
 
 <style>
 
@@ -19,7 +20,21 @@ color:white;
 header{
 background:black;
 padding:20px;
-text-align:center;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+header h1{
+margin:0;
+color:#ff2e63;
+}
+
+nav a{
+color:white;
+margin-left:15px;
+text-decoration:none;
+font-weight:bold;
 }
 
 .banner{
@@ -88,15 +103,33 @@ margin-top:30px;
 font-size:14px;
 }
 
+.small{
+font-size:13px;
+color:#ccc;
+}
+
 </style>
+
+<script>
+
+function submitForm(){
+alert("Registration submitted. After verification your profile will be listed.");
+}
+
+</script>
 
 </head>
 
 <body>
 
 <header>
+
 <h1>Provider Registration</h1>
-<p>Join Our Directory</p>
+
+<nav>
+<a href="index.html">Home</a>
+</nav>
+
 </header>
 
 <div class="banner">
@@ -115,11 +148,12 @@ Do you want to offer services? <b>Register now</b> and get listed.
 <li>After trial, activation fee is <b>KSh 300</b></li>
 <li>ID verification required to prevent fraud</li>
 <li>Duplicate profiles are not allowed</li>
+<li>You must be <b>18+ years old</b></li>
 </ul>
 
 </div>
 
-<form>
+<form onsubmit="submitForm(); return false;">
 
 <label>Stage Name</label>
 <input type="text" placeholder="Your display name" required>
@@ -137,16 +171,21 @@ Do you want to offer services? <b>Register now</b> and get listed.
 <input type="text" required>
 
 <label>Upload ID Photo</label>
-<input type="file">
+<input type="file" accept="image/*">
 
 <label>Profile Photo</label>
-<input type="file" required>
+<input type="file" accept="image/*" required>
 
 <label>Upload Video (Optional)</label>
-<input type="file">
+<input type="file" accept="video/*">
 
 <label>Profile Description</label>
 <textarea rows="4" placeholder="Tell clients about yourself"></textarea>
+
+<label>
+<input type="checkbox" required>
+I confirm I am 18+ and the information provided is correct
+</label>
 
 <button type="submit">Submit Registration</button>
 
@@ -177,11 +216,13 @@ Do you want to offer services? <b>Register now</b> and get listed.
 <footer>
 
 <p>
-Disclaimer: This platform only provides a directory of independent providers.
-All providers are responsible for their own services.
+Disclaimer: This platform only lists independent providers.  
+The website does not directly offer or arrange services.  
+All providers are responsible for their own activities.
 </p>
 
 </footer>
 
 </body>
 </html>
+```
